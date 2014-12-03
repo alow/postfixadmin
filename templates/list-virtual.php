@@ -268,8 +268,11 @@ if (sizeof ($tMailbox) > 0) {
 
    $colspan=8;
    if ($CONF['vacation_control_admin'] == 'YES') $colspan=$colspan+1;
-   if ($CONF['alias_control_admin'] == 'YES') $colspan=$colspan+1;
-   if ($display_mailbox_aliases)              $colspan=$colspan+1;
+   if ($CONF['email_monitor'] == 'YES' && check_admin_monitor(authentication_get_username(), $fDomain))          $colspan=$colspan+1;
+   if ($CONF['alias_control_admin'] == 'YES')    $colspan=$colspan+1;
+   if ($display_mailbox_aliases)                 $colspan=$colspan+1;
+
+
 
    print "<table id=\"mailbox_table\">\n";
    print "   <tr>\n";
@@ -349,6 +352,24 @@ if (sizeof ($tMailbox) > 0) {
                   $v_active = $PALANG['pOverview_vacation_option'];
                }
                print "<td><a href=\"edit-vacation.php?username=" . urlencode ($tMailbox[$i]['username']) . "&domain=$fDomain" . "\">" . $v_active . "</a></td>\n";
+            }
+            else {
+               // can't tell vacation state - broken pgsql query
+               echo "<td> &nbsp; </td>\n";
+            }
+         }
+
+         if ($CONF['email_monitor'] == 'YES' && check_admin_monitor(authentication_get_username(), $fDomain))
+         {
+            $m_active_int = $tMailbox[$i]['m_active'];
+            if($m_active_int !== -1) {
+               if($m_active_int == 1) {
+                  $m_active = $PALANG['pOverview_monitor_edit'];
+               }
+               else {
+                  $m_active = $PALANG['pOverview_monitor_option'];
+               }
+               print "<td><a href=\"edit-monitor.php?username=" . urlencode ($tMailbox[$i]['username']) . "&domain=$fDomain" . "\">" . $m_active . "</a></td>\n";
             }
             else {
                // can't tell vacation state - broken pgsql query

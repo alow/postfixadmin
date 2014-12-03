@@ -751,6 +751,28 @@ function check_owner ($username, $domain)
     }
 }
 
+//
+// check_admin_monitor
+// Action: Checks if the admin can use monitor
+// Call: check_admin_monitor (string admin, string domain)
+//
+function check_admin_monitor ($username, $domain)
+{
+    global $table_domain_admins;
+    $result = db_query ("SELECT * FROM $table_domain_admins WHERE username='$username' AND (domain='$domain' OR domain='ALL') AND active='1' AND can_monitor='1'");
+    if ($result['rows'] != 1)
+    {
+        if ($result['rows'] > 1) { # "ALL" + specific domain permissions. 2.3 doesn't create such entries, but they are available as leftover from older versions
+            flash_error("Permission check returned more than one result. Please go to 'edit admin' for your username and press the save "
+             . "button once to fix the database. If this doesn't help, open a bugreport.");
+        }
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
 
 
 //
@@ -1790,7 +1812,7 @@ function db_log ($username,$domain,$action,$data)
     global $table_log;
     $REMOTE_ADDR = $_SERVER['REMOTE_ADDR'];
 
-    $action_list = array('create_alias', 'create_alias_domain', 'delete_alias', 'delete_alias_domain', 'edit_alias', 'create_mailbox', 'delete_mailbox', 'edit_mailbox', 'edit_alias_state', 'edit_alias_domain_state', 'edit_mailbox_state', 'edit_password');
+    $action_list = array('create_alias', 'create_alias_domain', 'delete_alias', 'delete_alias_domain', 'edit_alias', 'create_mailbox', 'delete_mailbox', 'edit_mailbox', 'edit_alias_state', 'edit_alias_domain_state', 'edit_mailbox_state', 'edit_password', 'edit_monitor');
 
     if(!in_array($action, $action_list)) {
         die("Invalid log action : $action");   // could do with something better?
@@ -2422,4 +2444,5 @@ $table_vacation = table_by_key ('vacation');
 $table_vacation_notification = table_by_key('vacation_notification');
 $table_quota = table_by_key ('quota');
 $table_quota2 = table_by_key ('quota2');
+$table_monitor = table_by_key('monitor');
 /* vim: set expandtab softtabstop=4 tabstop=4 shiftwidth=4: */

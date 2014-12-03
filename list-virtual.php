@@ -226,6 +226,11 @@ if (boolconf('vacation_control_admin')) {
     $sql_join   .= " LEFT JOIN $table_vacation ON $table_mailbox.username=$table_vacation.email ";
 }
 
+if (boolconf('email_monitor') && check_admin_monitor(authentication_get_username(), $fDomain)) {
+    $sql_select .= ", $table_monitor.active AS m_active ";
+    $sql_join   .= " LEFT JOIN $table_monitor ON $table_mailbox.username=$table_monitor.email ";
+}
+
 if (boolconf('used_quotas') && boolconf('new_quota_table')) {
     $sql_select .= ", $table_quota2.bytes as current ";
     $sql_join   .= " LEFT JOIN $table_quota2 ON $table_mailbox.username=$table_quota2.username ";
@@ -276,7 +281,13 @@ if ($result['rows'] > 0)
             if($row['v_active'] == NULL) { 
                 $row['v_active'] = 'f';
             }
-            $row['v_active']=('t'==$row['v_active']) ? 1 : 0; 
+            $row['v_active']=('t'==$row['v_active']) ? 1 : 0;
+
+            if($row['m_active'] == NULL) {
+                $row['m_active'] = 'f';
+            }
+            $row['m_active']=('t'==$row['m_active']) ? 1 : 0;
+
         }
         $tMailbox[] = $row;
     }

@@ -74,6 +74,7 @@ $CONF['database_tables'] = array (
     'vacation_notification' => 'vacation_notification',
     'quota' => 'quota',
     'quota2' => 'quota2',
+    'monitor' => 'monitor',
 );
 
 // Site Admin
@@ -222,6 +223,10 @@ $CONF['vacation_control'] ='YES';
 // Vacation Control for admins
 // Set to 'YES' if your domain admins should be able to edit user vacation.
 $CONF['vacation_control_admin'] = 'YES';
+
+// Email Monitor
+// Set to 'YES' if your domain admins should be able to enable monitors on user emails
+$CONF['email_monitor'] = 'YES';
 
 // Alias Control
 // Postfix Admin inserts an alias in the alias table for every mailbox it creates.
