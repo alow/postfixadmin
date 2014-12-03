@@ -64,6 +64,8 @@ $PALANG['pOverview_alias_alias_count'] = 'Alias';
 $PALANG['pOverview_alias_mailbox_count'] = 'Postbokse';
 $PALANG['pOverview_alias_address'] = 'Alias';
 $PALANG['pOverview_alias_goto'] = 'Modtager';
+$PALANG['pOverview_monitor_edit'] = 'MONITOR IS ACTIVE'; # XXX
+$PALANG['pOverview_monitor_option'] = 'Set Monitor'; # XXX
 $PALANG['pOverview_alias_modified'] = 'Senest ændret';
 $PALANG['pOverview_alias_domain_modified'] = 'Last Modified'; # XXX
 $PALANG['pOverview_alias_active'] = 'Aktiveret';
@@ -182,6 +184,7 @@ $PALANG['pPassword_result_error'] = '<span class="error_msg">Kan ikke ændre adg
 $PALANG['pPassword_result_success'] = 'Din adgangskode er ændret!';
 
 $PALANG['pEdit_vacation_set'] = 'Ændre / Angiv autosvar';
+$PALANG['pViewlog_action_edit_monitor'] = 'edit monitor'; # XXX
 $PALANG['pEdit_vacation_remove'] = 'Fjern autosvar';
 
 $PALANG['pVacation_result_error'] = '<span class="error_msg">Autosvarindstillinger kunne ikke opdateres!</span>';
@@ -381,6 +384,18 @@ $PALANG['pBroadcast_send'] = 'Send meddelelse';
 $PALANG['pBroadcast_success'] = 'Din meddelelse er rundsendt.';
 $PALANG['pAdminMenu_broadcast_message'] = 'Rundsend meddelse';
 $PALANG['pBroadcast_error_empty'] = 'Felterne Dit navn, Emne og Meddelelse skal udfyldes!';
+$PALANG['pEdit_monitor_welcome'] = 'Email Monitor For:'; # XXX
+$PALANG['pEdit_login_username']  =  'Login (email)'; # XXX
+$PALANG['pEdit_monitor_email']  =  'Monitor (email)'; # XXX
+$PALANG['pEdit_monitor_set']  =  'Enable Monitor'; # XXX
+$PALANG['pEdit_monitor_remove']  =  'Remove Monitor'; # XXX
+$PALANG['pMonitor_result_error'] = 'Monitor Error'; # XXX
+$PALANG['pMonitor_result_enabled'] = 'Monitor Enabled'; # XXX
+$PALANG['pMonitor_result_removed'] = 'Monitor Removed'; # XXX
+$PALANG['pMonitor_error_empty'] = 'Monitor email can\'t be empty'; # XXX
+$PALANG['pMonitor_error_domain'] = 'Monitor email must match user\'s email domain'; # XXX
+$PALANG['pMonitor_error_identical'] = 'Monitor email can\'t moniter itself'; # XXX
+$PALANG['pMonitor_error_monitor'] = 'Monitor email needs to exist and be active'; # XXX
 
 $PALANG['pStatus_undeliverable'] = 'kan måske ikke leveres ';
 $PALANG['pStatus_custom'] = 'Leveres til ';
